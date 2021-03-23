@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ay.mapper.UserMapper">
+    <select id="selectUser" resultType="Tb_User">
+        select id,username,password from tb_user;
+    </select>
+    <select id="addUser">
+        insert into tb_user(username,password) values('wdj2024','1234555ss44');
+    </select>
+    <select id="updateUser">
+        update tb_user set password='9999' where username='wdj';
+    </select>
+    <select id="deleteUser">
+        delete from tb_user where username='wdj2023';
+    </select>
+</mapper>
