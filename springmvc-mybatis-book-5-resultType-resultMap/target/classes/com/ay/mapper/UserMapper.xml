@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ay.mapper.UserMapper">
+    <resultMap id="userClassMap" type="com.ay.dto.UserClass">
+        <id column="userid" property="userid"></id>
+        <result column="classname" property="classname"></result>
+        <result column="username" property="username"></result>
+        <result column="password" property="password"></result>
+    </resultMap>
+    <select id="selectUser" resultMap="userClassMap" parameterType="java.lang.String">
+        select u.id userid,u.username,u.`password`,c.classname
+        from tb_user u left join tb_class c
+        on u.id = c.userid WHERE u.username = #{username}
+    </select>
+</mapper>
