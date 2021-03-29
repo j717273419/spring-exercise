@@ -12,5 +12,8 @@
         <module name="springmvc-mybatis-book-3-curd" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="spring-mvc-demo" target="1.7" />
+    </bytecodeTargetLevel>
   </component>
 </project>
