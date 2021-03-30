@@ -24,4 +24,5 @@
         <property name="suffix" value=".jsp" />
     </bean>
 
+    <bean name="/t1" class="com.wangdongjie.springmvc.ModelAndViewTestHandler"/>
 </beans>
