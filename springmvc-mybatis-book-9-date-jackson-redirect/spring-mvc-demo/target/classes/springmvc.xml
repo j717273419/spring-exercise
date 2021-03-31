@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--启用MVC默认配置 (@RequestMapping) -->
+    <!-- Date Format -->
+<!--    <bean id="dateFormatter" class="java.text.SimpleDateFormat">-->
+<!--        <constructor-arg value="yyyy-MM-dd"/>-->
+<!--    </bean>-->
+
+<!--    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">-->
+<!--        <property name="targetObject" ref="dateFormatter" />-->
+<!--        <property name="targetMethod" value="setTimeZone" />-->
+<!--        <property name="arguments">-->
+<!--            <list>-->
+<!--                <ref bean="timeZone"/>-->
+<!--            </list>-->
+<!--        </property>-->
+<!--    </bean>-->
+    <!-- End Date Format -->
+    <!--Jackson乱码解决-->
+    <mvc:annotation-driven>
+        <mvc:message-converters>
+            <bean class="org.springframework.http.converter.StringHttpMessageConverter">
+                <constructor-arg value="UTF-8"/>
+            </bean>
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+                <property name="objectMapper">
+                    <bean class="org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean">
+                        <property name="failOnEmptyBeans" value="false"/>
+                        <!-- 格式化时间 -->
+                        <property name="dateFormat">
+                            <bean class="java.text.SimpleDateFormat">
+                                <constructor-arg type="java.lang.String" value="yyyy/MM/dd HH:mm"/>
+                            </bean>
+                        </property>
+                    </bean>
+                </property>
+            </bean>
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+    <!-- 配置组件扫描 -->
+    <context:component-scan base-package="com.wangdongjie.springmvc"></context:component-scan>
+
+    <!-- 配置视图解析器 -->
+    <bean id="viewResolver"
+          class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/" />
+        <property name="suffix" value=".jsp" />
+    </bean>
+
+</beans>
