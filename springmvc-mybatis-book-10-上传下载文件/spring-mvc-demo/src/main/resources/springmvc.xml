@@ -23,6 +23,17 @@
         <property name="prefix" value="/" />
         <property name="suffix" value=".jsp" />
     </bean>
+    <!-- 配置上传文件 -->
+<!--    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" >-->
+<!--        <property name="prefix" value="/WEB-INF/views/" />-->
+<!--        <property name="suffix" value=".jsp" />-->
+<!--        <property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />-->
+<!--    </bean>-->
+<!--    <bean id="multipartResolver" class="org.springframework.web.multipart.support.StandardServletMultipartResolver"/>-->
 
+    <!-- SpringMVC上传文件时，需要配置MultipartResolver处理器 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="defaultEncoding" value="UTF-8" />
+    </bean>
     <bean name="/t1" class="com.wangdongjie.springmvc.ModelAndViewTestHandler"/>
 </beans>

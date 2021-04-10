@@ -13,21 +13,6 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 
     <!--启用MVC默认配置 (@RequestMapping) -->
-    <!-- Date Format -->
-<!--    <bean id="dateFormatter" class="java.text.SimpleDateFormat">-->
-<!--        <constructor-arg value="yyyy-MM-dd"/>-->
-<!--    </bean>-->
-
-<!--    <bean class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">-->
-<!--        <property name="targetObject" ref="dateFormatter" />-->
-<!--        <property name="targetMethod" value="setTimeZone" />-->
-<!--        <property name="arguments">-->
-<!--            <list>-->
-<!--                <ref bean="timeZone"/>-->
-<!--            </list>-->
-<!--        </property>-->
-<!--    </bean>-->
-    <!-- End Date Format -->
     <!--Jackson乱码解决-->
     <mvc:annotation-driven>
         <mvc:message-converters>
@@ -38,12 +23,6 @@
                 <property name="objectMapper">
                     <bean class="org.springframework.http.converter.json.Jackson2ObjectMapperFactoryBean">
                         <property name="failOnEmptyBeans" value="false"/>
-                        <!-- 格式化时间 -->
-                        <property name="dateFormat">
-                            <bean class="java.text.SimpleDateFormat">
-                                <constructor-arg type="java.lang.String" value="yyyy/MM/dd HH:mm"/>
-                            </bean>
-                        </property>
                     </bean>
                 </property>
             </bean>
